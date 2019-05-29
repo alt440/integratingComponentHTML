@@ -1,0 +1,159 @@
+<style>
+  /*Divide the columns right*/
+  #table {
+    /*This takes the width of the page. This table contains the tabs*/
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Dropdown Button */
+  .dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Dropdown button on hover & focus. only changes color */
+  .dropbtn:hover,
+  .dropbtn:focus {
+    background-color: #2980B9;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: absolute;
+    left: 5%;
+    top: 10px;
+    /* inline-block allows elements to be surrounding the block and never go on it (or step on it)*/
+    display: inline-block;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    /*Hides the elements with display: none*/
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    /*Steps over the other elements under it with z-index*/
+    z-index: 1;
+  }
+
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    /* Color font tabs*/
+    color: black;
+    /* Space between each */
+    padding: 12px 16px;
+    text-decoration: none;
+    /* Takes the whole row. If anything on the row at z-index 1 it will be put lower */
+    display: block;
+  }
+
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd
+  }
+
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {
+    display: block;
+  }
+
+  /*If you want to change the css, do so, then minify it, and replace the code in the template below by what you want*/
+</style>
+
+<!--table element-->
+<table id="table" class="table">
+  <tr id="tableRow">
+    <!--Add elements dynamically through the JS code, depending on how many user wants-->
+  </tr>
+</table>
+<div id="dropdown" class="dropdown">
+  <button id="showTabsButton" class="dropbtn">Tabs</button>
+  <div id="myDropdown" class="dropdown-content">
+    <!--Add elements dynamically through the JS code, depending on how many user wants-->
+  </div>
+</div>
+
+<script>
+  //array containing all the tabs values -- MODIFY THIS!
+  var array = ['Introduction', 'Play Now', 'Contact Us'];
+  //gives us destination we reach when we click on a tab.
+  var destinationOnClick = ["#", "#", "#"];
+
+  //current elements appearing in the table
+  for (var i = 0; i < array.length; i++) {
+    var td = document.createElement("td");
+    td.innerHTML = array[i];
+    td.onclick = function() {
+      window.location.href = destinationOnClick[i];
+    }
+    //divide the width of each tab depending on how many there is
+    td.style.width = ((1 / array.length) * 100) + "%";
+    document.getElementById("tableRow").appendChild(td);
+
+    //now do the same for links in the dropdown menu
+    var a = document.createElement("a");
+    //this determines the url
+    a.href = destinationOnClick[i];
+    a.innerHTML = array[i];
+    a.style.width = ((1 / array.length) * 100) + "%";
+    document.getElementById("myDropdown").appendChild(a);
+  }
+
+  //to get the width of the window with IE as well
+  var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  //create a button when screen becomes too small
+  //hides table, shows dropdown
+  if (width <= 600) {
+    document.getElementById("table").style.display = "none";
+    document.getElementById("dropdown").style.display = "";
+  }
+  //hides dropdown, shows table
+  else {
+    document.getElementById("table").style.display = "";
+    document.getElementById("dropdown").style.display = "none";
+  }
+
+  lock = false;
+  //adds event listener resize. Better to do it this way, as it seems window.onresize is bad practice
+  window.addEventListener("resize", function(event) {
+    var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (!lock) {
+      lock = true;
+      if (width <= 600) {
+        document.getElementById("table").style.display = "none";
+        document.getElementById("dropdown").style.display = "";
+      } else {
+        document.getElementById("table").style.display = "";
+        document.getElementById("dropdown").style.display = "none";
+      }
+      lock = false;
+    }
+  });
+
+  //code referenced through https://www.w3schools.com/howto/howto_js_dropdown.asp
+  document.getElementById("showTabsButton").onclick = function() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.addEventListener("click", function(event) {
+    //if click outside of the dropbtn
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  });
+</script>

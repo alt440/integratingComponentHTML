@@ -1,0 +1,36 @@
+<html>
+
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id="el" class="loader" header-tagx="component.html"></div>
+    <div>Hello</div>
+    <!-- <script src="componentLoader.js"></script>
+    <script src="component.js"></script>-->
+    <script>
+      //get all elements in this html with class loader
+      var wholeDoc = document.getElementsByClassName("loader");
+      for (var i=0;i<wholeDoc.length;i++){
+        var loc = wholeDoc[i].getAttribute("header-tagx");
+        //if the attribute header-tagx has been set on this item
+        if(loc !== undefined && !loc.includes("importer.html")){
+          	$.ajax({
+	            url: loc,
+	            xhrFields: {withCredentials: true},
+	            type: "GET",
+	            dataType: "html",
+	            success: function (data) {
+	                $(wholeDoc[i]).html(data);
+	            },
+	            error: function (xhr, status) {
+	                //alert("Sorry, there was a problem!");
+	            }
+	        });
+        }
+      }
+    </script>
+  </body>
+
+</html>
