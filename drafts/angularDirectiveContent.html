@@ -1,0 +1,13 @@
+<!-- ng-repeat repeats the same line of html for number of elements in tabNames-->
+<!-- {{}} indicates information from angular-->
+<table class="table">
+  <tr>
+    <td class="column{{x}}" ng-repeat="x in vals">{{tabNames[x-1]}}</td>
+  </tr>
+</table>
+<div class="dropdown">
+  <button id="showTabsButton" class="dropbtn">Tabs</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#" class="column{{x}}" ng-repeat="x in vals">{{tabNames[x-1]}}</a>
+  </div>
+</div>
