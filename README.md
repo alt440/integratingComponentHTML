@@ -15,6 +15,9 @@ not finished being modified that the second script started executing. This makes
 
 I will be trying to create a proxy from the backend to resolve this issue.
 
+Different solutions: 
+https://stackoverflow.com/questions/15005500/loading-cross-domain-endpoint-with-jquery-ajax/17299796#17299796
+
 Next, I will do the same thing over AngularJS and ReactJS from the backend, and
 see if the result is any different. I want to see if it is easier to do it with those languages.
 
