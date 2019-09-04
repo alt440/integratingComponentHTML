@@ -30,3 +30,20 @@ It uses \<link rel="import"\> to import HTML components.
 
 However, it seems ES6 has it removed. 
 This would work using NodeJS as backend: https://stackoverflow.com/questions/37818401/importing-html-files-with-es6-template-string-loader ?
+
+I just looked into \<link rel="import"\>, and it does not work. This is because it is only supported by Chrome, and also because it is now being deprecated.
+
+However, when I clicked on the error, I got the message below:
+  
+HTML Imports are deprecated at M70, and will be removed in M80, by February, 2020. For more info: https://groups.google.com/a/chromium.org/d/msg/blink-dev/h-JwMiPUnuU/sl79aLoLBQAJ
+ 
+ HTML Imports was an experimental technology, never implemented in any other browser.
+
+Shadow DOM V0, Custom Elements V0, and HTML Imports were launched in 2014, but they did not get adopted by other browser engines. Instead, Shadow DOM V1, Custom Elements V1, and ES modules are widely adopted by various browser engines today. Chrome has shipped Shadow DOM V1 / Custom Elements V1 in 2016 and ES modules in 2017.
+
+So this means that I should look into integrating Shadow DOM V1, Custom Elements V1, and ES modules (this last one will most likely be for nodejs stuff only...). Shadow DOM is just like adding a namespace in C++ so that the CSS classes of the module you are getting in does not interfere with the classes that are already on the webpage. This guy Eric Bidelman working at Google did a lot of articles on integrating modules.
+
+https://www.html5rocks.com/en/tutorials/webcomponents/imports/
+
+Eric Bidelman is also knowledgeable of a tool developed by Google called Polymer. I believe this tool could do the task I am looking to do, but it seems rather complicated to use. See the Polymer project by Google: https://korben.info/initiation-polymer-le-nouveau-framework-web-de-google.html
+https://auth0.com/blog/build-your-first-app-with-polymer-and-web-components/
