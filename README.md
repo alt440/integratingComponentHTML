@@ -22,3 +22,11 @@ Next, I will do the same thing over AngularJS and ReactJS from the backend, and
 see if the result is any different. I want to see if it is easier to do it with those languages.
 
 This project has the purpose to learn AngularJS and ReactJS, as well as learn why those plugins are used.
+
+
+# Some sources to look into
+This is interesting too: https://www.html5rocks.com/en/tutorials/webcomponents/imports/
+It uses <link rel="import"> to import HTML components.
+
+However, it seems ES6 has it removed. 
+This would work using NodeJS as backend: https://stackoverflow.com/questions/37818401/importing-html-files-with-es6-template-string-loader ?
