@@ -47,3 +47,6 @@ https://www.html5rocks.com/en/tutorials/webcomponents/imports/
 
 Eric Bidelman is also knowledgeable of a tool developed by Google called Polymer. I believe this tool could do the task I am looking to do, but it seems rather complicated to use. See the Polymer project by Google: https://korben.info/initiation-polymer-le-nouveau-framework-web-de-google.html
 https://auth0.com/blog/build-your-first-app-with-polymer-and-web-components/
+
+# A possible new solution
+I could try to implement a runtime tool that creates a new html file (fileName_.html) if only there is a request for another file in some html file. In that new html file, the code of the two html files will be combined where it should be. Also, to be able to be redirected to the right page, I would put a reference to fileName_.html in fileName.html, just like I did to add the component on a html page (see drafts). This way the fileName_.html page would load instead of integrating fileName_.html (exploiting the issue...). Now, this is only a temporary solution for the frontend. I would also need to implement something for the backend. I would need to find a way to add this URL to my backend...
